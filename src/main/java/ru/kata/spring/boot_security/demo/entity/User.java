@@ -29,11 +29,16 @@ public class User implements UserDetails {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id")
     private Set<Role> roles;
-    public User() {}
 
-    public User(String firstName, String lastName) {
+    public User() {
+    }
+
+    public User(String firstName, String lastName, String userName, String password, Set<Role> roles) {
+        this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.roles = roles;
+        this.password = password;
 
     }
 
@@ -76,8 +81,6 @@ public class User implements UserDetails {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
-
-
 
 
     @Override

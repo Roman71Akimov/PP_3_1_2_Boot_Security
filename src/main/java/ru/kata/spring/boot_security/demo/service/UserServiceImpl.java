@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public User getUserByUsername(String userName) {
         return userRepository.getUserByUserName(userName);
     }
-
+    @Transactional
     @Override
     public void updateUser(Long id, User user) {
         Optional<User> optionalUser = userRepository.findById(id);
@@ -68,7 +68,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
 
     }
-
+    @Transactional
     @Override
     public void removeUserById(Long id) {
         userRepository.deleteById(id);
