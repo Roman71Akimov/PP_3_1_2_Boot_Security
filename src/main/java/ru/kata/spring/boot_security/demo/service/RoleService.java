@@ -5,7 +5,7 @@ import java.util.List;
 public interface RoleService {
     List<Role> getRoles();
 
-    void saveRole(Role roleAdmin);
+    void saveRole(Role role);
 
     void removeRoleById(Long id);
 }

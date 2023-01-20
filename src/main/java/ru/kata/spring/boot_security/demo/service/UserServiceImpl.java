@@ -51,8 +51,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public User getUserByUsername(String userName) {
-        return userRepository.getUserByUserName(userName);
+    public User getUserByUsername(String username) {
+        return userRepository.getUserByUsername(username);
     }
     @Transactional
     @Override
@@ -60,9 +60,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         Optional<User> optionalUser = userRepository.findById(id);
         if(optionalUser.isPresent()){
             User updUser = optionalUser.get();
-            updUser.setUserName(user.getUsername());
-            updUser.setFirstName(user.getFirstName());
-            updUser.setLastName(user.getLastName());
+            updUser.setUsername(user.getUsername());
+            updUser.setFirstname(user.getFirstname());
+            updUser.setLastname(user.getLastname());
         } else {
             throw new UsernameNotFoundException(String.format("User %s with id: %s not found", user.getUsername(), id));
         }
@@ -85,6 +85,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 mapRolesToAuthorities(user.getRoles()));
     }
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
-        return roles.stream().map(r -> new SimpleGrantedAuthority(r.getName())).collect(Collectors.toList());
+        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
     }
 }

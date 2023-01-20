@@ -17,13 +17,14 @@ public class AdminController {
 
     private final UserService userService;
     private final RoleService roleService;
-//    private final RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
 
     @Autowired
-    public AdminController(UserService userService, RoleService roleService) {
+    public AdminController(UserService userService, RoleService roleService, RoleRepository roleRepository) {
         this.userService = userService;
         this.roleService = roleService;
 
+        this.roleRepository = roleRepository;
     }
 
     @GetMapping()
